@@ -15,6 +15,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        marginLeft: theme.spacing(8),
         float: 'left'
     },
     map: {

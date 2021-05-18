@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -6,16 +6,34 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import HotTubRoundedIcon from '@material-ui/icons/HotTubRounded';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      width: '100%',
-      maxWidth: 360,
+        width: '100%',
+        position: 'relative',
+        overflow: 'auto',
+        maxHeight: 360,
     },
+    nested: {
+        paddingLeft: theme.spacing(4),
+      },
   }));
 
 const SpringList = ({ springList }) => {
     const classes = useStyles();
+    const [open, setOpen] = useState(true);
+    const [selectedIndex, setSelectedIndex] = useState(1);
+
+    const handleClick = (e, index) => {
+        setSelectedIndex(index);
+        setOpen(!open);
+      };
 
     if (springList.length !== 0) {
         return (
@@ -23,14 +41,35 @@ const SpringList = ({ springList }) => {
                 <h3>Hot Springs:</h3>
                 {springList.map((spring) => {
                     return (
-                    <ListItem key={spring.id} button>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <HotTubRoundedIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText>{spring.name === 'null' ? spring.name = 'Not Named' : spring.name}</ListItemText>
-                    </ListItem>
+                    <>
+                        <ListItem key={spring.id} button onClick={(e) => handleClick(e, spring.id)}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <HotTubRoundedIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText 
+                            primary={spring.name === 'null' ? spring.name = 'Not Named' : spring.name} 
+                            />
+                            {open ? <ExpandLess /> : <ExpandMore />}
+                        </ListItem>
+                        <Collapse in={selectedIndex === spring.id ? open : false} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem className={classes.nested} selected={selectedIndex === spring.id}>
+                                    <ListItemIcon>
+                                        <WhatshotIcon />
+                                    </ListItemIcon>
+                                    <ListItemText secondary={`Fahrenheit: ${spring.fahrenheit}`} />
+                                </ListItem>
+                                <ListItem className={classes.nested} selected={selectedIndex === spring.id}>
+                                    <ListItemIcon>
+                                        <AcUnitIcon />
+                                    </ListItemIcon>
+                                    <ListItemText secondary={`Celsius: ${spring.celsius}`} />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </>
                     );
                 })}
             </List>
