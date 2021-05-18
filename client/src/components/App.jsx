@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import SpringList from './SpringList.jsx';
+import Map from './GoogleMaps.jsx';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,10 +10,15 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         float: 'left'
+    },
+    map: {
+        float: 'right'
     },
     paper: {
       marginTop: theme.spacing(8),
@@ -33,10 +39,23 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+
+
 const App = () => {
     const [stateCode, setStateCode] = useState('');
     const [springList, setSpringList] = useState([]);
     const classes = useStyles();
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+    const theme = React.useMemo(
+      () =>
+        createMuiTheme({
+          palette: {
+            type: prefersDarkMode ? 'dark' : 'light',
+          },
+        }),
+      [prefersDarkMode],
+    );
 
     const handleChange = (e) => {
         setStateCode(e.target.value);
@@ -54,6 +73,8 @@ const App = () => {
     }
 
     return (
+        <>
+        <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs" className={classes.root}>
         <CssBaseline />
         <div className={classes.paper}>
@@ -91,6 +112,11 @@ const App = () => {
              <SpringList springList={springList}/>
         </div>
       </Container>
+      <Container>
+        <Map />
+      </Container>
+    </ThemeProvider>
+    </>
     );
 };
 
