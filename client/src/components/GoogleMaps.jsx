@@ -5,8 +5,8 @@ const containerStyle = {
   width: '600px',
   height: '600px',
   'float': 'right',
-  'marginTop': '68px',
-  'marginRight': '68px'
+  'marginTop': '130px',
+  'marginRight': '40px'
 };
 
 const center = {
