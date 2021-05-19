@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
     const [value, setValue] = useState('');
     const [springList, setSpringList] = useState([]);
+    const [favorites, setFavorites] = useState([]);
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
     const classes = useStyles();
@@ -99,7 +100,7 @@ const App = () => {
 
     return (
         <ThemeProvider theme={darkMode}>
-        <Header />
+        <Header favorites={favorites}/>
         <Container component="main" maxWidth="xs" className={classes.root}>
         <CssBaseline />
         <div className={classes.paper}>
@@ -136,7 +137,7 @@ const App = () => {
           </form>
         </div>
         <div>
-             <SpringList springList={springList}/>
+             <SpringList springList={springList} setFavorites={setFavorites} favorites={favorites}/>
         </div>
       </Container>
       <Container>
