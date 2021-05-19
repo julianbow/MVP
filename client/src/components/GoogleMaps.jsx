@@ -1,6 +1,4 @@
 import React from 'react'
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import config from '../../../API/APIconfig.js';
 
 const containerStyle = {
   width: '700px',
@@ -18,7 +16,7 @@ const center = {
 function Map() {
   return (
     <iframe 
-    src="https://www.google.com/maps/d/u/0/embed?mid=14ht1iTXTyu21vx4tu8pnDasyhy9tGhV_" 
+    src="https://www.google.com/maps/d/u/0/embed?mid=1CqUjeYu6oatbpI3dDt-0nkFnJzBW8nSq" 
     style={containerStyle}
     >
     </iframe>
