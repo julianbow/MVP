@@ -3,11 +3,11 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import config from '../../../API/APIconfig.js';
 
 const containerStyle = {
-  width: '600px',
+  width: '700px',
   height: '600px',
   'float': 'right',
   'marginTop': '130px',
-  'marginRight': '40px'
+  'marginRight': '30px'
 };
 
 const center = {
@@ -17,15 +17,11 @@ const center = {
 
 function Map() {
   return (
-    <LoadScript googleMapsApiKey={config.API_KEY}>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}>
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
-    </LoadScript>
+    <iframe 
+    src="https://www.google.com/maps/d/u/0/embed?mid=14ht1iTXTyu21vx4tu8pnDasyhy9tGhV_" 
+    style={containerStyle}
+    >
+    </iframe>
   )
 }
 
