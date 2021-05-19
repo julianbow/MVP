@@ -27,22 +27,22 @@ const useStyles = makeStyles((theme) => ({
 
 const SpringList = ({ springList }) => {
     const classes = useStyles();
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(1);
 
-    const handleClick = (e, index) => {
-        setSelectedIndex(index);
+    const handleClick = (index) => {
         setOpen(!open);
+        setSelectedIndex(index);
       };
 
     if (springList.length !== 0) {
         return (
             <List className={classes.root}>
                 <h3>Hot Springs:</h3>
-                {springList.map((spring) => {
+                {springList.map((spring, index) => {
                     return (
                     <>
-                        <ListItem key={spring.id} button onClick={(e) => handleClick(e, spring.id)}>
+                        <ListItem key={spring.id} button onClick={() => handleClick(index)} selected={selectedIndex === index}>
                             <ListItemAvatar>
                                 <Avatar>
                                     <HotTubRoundedIcon />
@@ -53,19 +53,19 @@ const SpringList = ({ springList }) => {
                             />
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
-                        <Collapse in={selectedIndex === spring.id ? open : false} timeout="auto" unmountOnExit>
+                        <Collapse in={(selectedIndex === index && open) ? open : false} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem className={classes.nested} selected={selectedIndex === spring.id}>
                                     <ListItemIcon>
                                         <WhatshotIcon />
                                     </ListItemIcon>
-                                    <ListItemText secondary={`Fahrenheit: ${spring.fahrenheit}`} />
+                                    <ListItemText secondary={`Fahrenheit: ${spring.fahrenheit === 'H' ? 'Hot' : spring.fahrenheit === 'W' ? 'Warm' : spring.fahrenheit}`} />
                                 </ListItem>
                                 <ListItem className={classes.nested} selected={selectedIndex === spring.id}>
                                     <ListItemIcon>
                                         <AcUnitIcon />
                                     </ListItemIcon>
-                                    <ListItemText secondary={`Celsius: ${spring.celsius}`} />
+                                    <ListItemText secondary={`Celsius: ${spring.celsius === 'H' ? 'Hot' : spring.celsius === 'W' ? 'Warm' : spring.celsius}`} />
                                 </ListItem>
                             </List>
                         </Collapse>

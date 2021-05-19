@@ -81,7 +81,6 @@ const App = () => {
 
     return (
         <>
-        <ThemeProvider theme={theme}>
         <Header />
         <Container component="main" maxWidth="xs" className={classes.root}>
         <CssBaseline />
@@ -123,7 +122,6 @@ const App = () => {
       <Container>
         <Map />
       </Container>
-    </ThemeProvider>
     </>
     );
 };
