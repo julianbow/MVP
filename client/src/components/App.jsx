@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const theme = createMuiTheme({
     palette: {
@@ -32,8 +33,8 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginLeft: theme.spacing(8),
-        marginTop: theme.spacing(7),
+        marginLeft: theme.spacing(12),
+        marginTop: theme.spacing(6),
         float: 'left'
     },
     map: {
@@ -62,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
     const [stateCode, setStateCode] = useState('');
     const [springList, setSpringList] = useState([]);
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
     const classes = useStyles();
 
     const handleChange = (e) => {
@@ -79,8 +82,18 @@ const App = () => {
         })
     }
 
+    const darkMode = React.useMemo(
+      () =>
+        createMuiTheme({
+          palette: {
+            type: prefersDarkMode ? 'dark' : 'light',
+          },
+        }),
+      [prefersDarkMode],
+    );
+
     return (
-        <>
+        <ThemeProvider theme={darkMode}>
         <Header />
         <Container component="main" maxWidth="xs" className={classes.root}>
         <CssBaseline />
@@ -93,7 +106,7 @@ const App = () => {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth
@@ -111,7 +124,9 @@ const App = () => {
               className={classes.submit}
               onClick={search}
             >
+              <Typography variant="button">
               Search
+              </Typography>
             </Button>
           </form>
         </div>
@@ -122,7 +137,7 @@ const App = () => {
       <Container>
         <Map />
       </Container>
-    </>
+    </ThemeProvider>
     );
 };
 
