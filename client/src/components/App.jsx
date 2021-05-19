@@ -61,19 +61,24 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const App = () => {
-    const [stateCode, setStateCode] = useState('');
+    const [value, setValue] = useState('');
     const [springList, setSpringList] = useState([]);
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
     const classes = useStyles();
 
     const handleChange = (e) => {
-        setStateCode(e.target.value);
+      if (e.target.value.includes(' ')) {
+        let newVal = e.target.value.replace(/ /g, '');
+        setValue(newVal);
+      } else {
+        setValue(e.target.value);
+      }
     };
 
     const search = (e) => {
         e.preventDefault();
-        axios.get(`/springs/${stateCode}`)
+        axios.get(`/springs/${value}`)
         .then((response) => {
             setSpringList(response.data);
         })

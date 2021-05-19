@@ -9,15 +9,15 @@ app.use(express.json());
 
 app.get('/springs/:stateCode', (req, res) => {
     const { stateCode } = req.params;
-    db.query(`SELECT * FROM springs WHERE sc = '${stateCode}';`, (err, data) => {
+    db.query(`SELECT * FROM springs WHERE sc = '${stateCode.toUpperCase()}';`, (err, data) => {
         if (err) {
             console.log('Error accessing database :( ', err);
         } else {
+            console.log(data);
             res.send(data.rows);
         }
     })
 });
-
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

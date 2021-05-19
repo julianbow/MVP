@@ -11,6 +11,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PlaceIcon from '@material-ui/icons/Place';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,6 +67,12 @@ const SpringList = ({ springList }) => {
                                        <WhatshotIcon />
                                     </ListItemIcon>
                                     <ListItemText secondary={`Celsius: ${spring.celsius === 'H' ? 'Hot' : spring.celsius === 'W' ? 'Warm' : spring.celsius}`} />
+                                </ListItem>
+                                <ListItem className={classes.nested} selected={selectedIndex === spring.id}>
+                                    <ListItemIcon>
+                                       <PlaceIcon />
+                                    </ListItemIcon>
+                                    <ListItemText secondary={`State: ${spring.sc}`} />
                                 </ListItem>
                             </List>
                         </Collapse>
