@@ -13,7 +13,6 @@ app.get('/springs/:stateCode', (req, res) => {
         if (err) {
             console.log('Error accessing database :( ', err);
         } else {
-            console.log(data);
             res.send(data.rows);
         }
     })
