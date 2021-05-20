@@ -15,13 +15,17 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         overflow: 'auto',
         maxHeight: 360,
-    }
+    },
+    nested: {
+      paddingLeft: theme.spacing(4),
+      backgroundColor: theme.palette.action.selected
+    },
   }));
 
 const FavoriteModal = ({ isOpen, handleClose, favorites }) => {
-    const classes = useStyles();
+  const classes = useStyles();
   return (
-    <div>
+    <div className={classes.root}>
       <Dialog
         open={isOpen}
         onClose={handleClose}
@@ -33,18 +37,16 @@ const FavoriteModal = ({ isOpen, handleClose, favorites }) => {
             <DialogContentText>
                 Here is a list of all your favorite Hot Springs.
             </DialogContentText>
-            <List className={classes.root}>
+            <List>
                 {favorites.length > 0 ? favorites.map((favorite, index) => {
                     return (
-                        <ListItem key={index}>
-                            <ListItemText>{favorite.name}</ListItemText>
+                        <ListItem key={index} className={classes.nested}>
+                            <ListItemText>{favorite.name}, {favorite.sc}</ListItemText>
                         </ListItem>
                     );
                     }) : null}
             </List>
         </DialogContent>
-        <DialogActions>
-        </DialogActions>
       </Dialog>
     </div>
   );

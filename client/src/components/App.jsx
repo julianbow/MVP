@@ -88,15 +88,15 @@ const App = () => {
         })
     }
 
-    const darkMode = React.useMemo(
-      () =>
-        createMuiTheme({
-          palette: {
-            type: prefersDarkMode ? 'dark' : 'light',
-          },
-        }),
-      [prefersDarkMode],
-    );
+    // const darkMode = React.useMemo(
+    //   () =>
+    //     createMuiTheme({
+    //       palette: {
+    //         type: prefersDarkMode ? 'dark' : 'light',
+    //       },
+    //     }),
+    //   [prefersDarkMode],
+    // );
 
     return (
         <ThemeProvider >

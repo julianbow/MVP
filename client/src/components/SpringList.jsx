@@ -13,7 +13,6 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PlaceIcon from '@material-ui/icons/Place';
 import StarIcon from '@material-ui/icons/Star';
-import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     nested: {
         paddingLeft: theme.spacing(4),
-        backgroundColor: theme.palette.background.paper
+        backgroundColor: theme.palette.action.selected
       },
   }));
 
@@ -81,11 +80,9 @@ const SpringList = ({ springList, setFavorites, favorites }) => {
                                     </ListItemIcon>
                                     <ListItemText secondary={`State: ${spring.sc}`} />
                                 </ListItem>
-                                <ListItem className={classes.nested} selected={selectedIndex === spring.id}>
-                                    <ListItemIcon>
-                                        <IconButton onClick={() => favoritesList(spring)}>
+                                <ListItem className={classes.nested} selected={selectedIndex === spring.id} button onClick={() => favoritesList(spring)}>
+                                    <ListItemIcon primary="Starred">
                                             <StarIcon />
-                                        </IconButton>
                                     </ListItemIcon>
                                     <ListItemText secondary='Favorite' />
                                 </ListItem>

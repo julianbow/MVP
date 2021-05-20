@@ -8,11 +8,6 @@ const containerStyle = {
   'marginRight': '30px'
 };
 
-const center = {
-  lat: 40.4849769,
-  lng: -106.8317158
-};
-
 const Map = () => {
   return (
     <iframe 
