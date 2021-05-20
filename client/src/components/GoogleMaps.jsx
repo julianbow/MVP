@@ -13,7 +13,7 @@ const center = {
   lng: -106.8317158
 };
 
-function Map() {
+const Map = () => {
   return (
     <iframe 
     src="https://www.google.com/maps/d/u/0/embed?mid=1CqUjeYu6oatbpI3dDt-0nkFnJzBW8nSq" 
@@ -23,4 +23,4 @@ function Map() {
   )
 }
 
-export default React.memo(Map)
+export default Map;
