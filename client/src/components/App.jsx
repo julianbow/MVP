@@ -99,7 +99,7 @@ const App = () => {
     );
 
     return (
-        <ThemeProvider theme={darkMode}>
+        <ThemeProvider >
         <Header favorites={favorites}/>
         <Container component="main" maxWidth="xs" className={classes.root}>
         <CssBaseline />
