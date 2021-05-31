@@ -1,6 +1,6 @@
 # Soaked
 
-Soaked is a Hot Springs finder built with ReactJS, MaterialUI, ExpressJS, and PostgreSQL. It utilizes NOAA's Thermal Springs API data to create a full-stack application.
+Soaked is a Hot Springs finder built with ReactJS, MaterialUI, ExpressJS, and PostgreSQL. It utilizes NOAA's Thermal Springs API data to create a full-stack application. This application also uses an embeded Google Map to display all of the hot springs in the United States.
 
 # Demo
 
